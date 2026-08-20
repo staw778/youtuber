@@ -1,64 +1,137 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
-  <meta charset="utf-8">
-  <title>Unity Web Player | Youtuber</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: black;
-    }
-    #unity-canvas {
-      display: block;
-      background: #231F20;
-      margin: 0 auto; /* 水平置中，左右可留白 */
-    }
-  </style>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Unity Web Player | Youtuber</title>
+
+    <style>
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #unity-canvas {
+            display: block;
+            background: #231F20;
+        }
+
+    </style>
+
 </head>
+
 <body>
-  <canvas id="unity-canvas" width="1920" height="1080" tabindex="-1"></canvas>
-  <script src="Build/Export.loader.js"></script>
-  <script>
-    function resizeCanvas() {
-      const canvas = document.querySelector("#unity-canvas");
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
 
-      const gameAspect = 1920 / 1080;
-      const windowAspect = windowWidth / windowHeight;
+    <canvas
+        id="unity-canvas"
+        width="1920"
+        height="1080"
+        tabindex="-1">
+    </canvas>
 
-      let width, height;
-      if (windowAspect > gameAspect) {
-        // 瀏覽器比遊戲寬 → 以高度為基準
-        height = windowHeight;
-        width = height * gameAspect;
-      } else {
-        // 瀏覽器比遊戲高 → 以寬度為基準
-        width = windowWidth;
-        height = width / gameAspect;
-      }
+    <script src="Build/Export.loader.js"></script>
 
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
-    }
+    <script>
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+        const canvas = document.querySelector("#unity-canvas");
 
-    createUnityInstance(document.querySelector("#unity-canvas"), {
-      dataUrl: "Build/Export.data",
-      frameworkUrl: "Build/Export.framework.js",
-      codeUrl: "Build/Export.wasm",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "DefaultCompany",
-      productName: "Youtuber",
-      productVersion: "1.0",
-      matchWebGLToCanvasSize: true
-    }).catch((message) => {
-      alert(message);
-    });
-  </script>
+        // Unity 原始解析度
+        const GAME_WIDTH = 1920;
+        const GAME_HEIGHT = 1080;
+
+        // 等比例縮放 Canvas
+        function resizeGame() {
+
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            const gameRatio = GAME_WIDTH / GAME_HEIGHT;
+            const windowRatio = windowWidth / windowHeight;
+
+            let width;
+            let height;
+
+            if (windowRatio > gameRatio) {
+
+                // 螢幕比較寬
+                // 以高度為基準
+                height = windowHeight;
+                width = height * gameRatio;
+
+            }
+            else {
+
+                // 螢幕比較窄 / 比較高
+                // 以寬度為基準
+                width = windowWidth;
+                height = width / gameRatio;
+
+            }
+
+            canvas.style.width = width + "px";
+            canvas.style.height = height + "px";
+        }
+
+        // 第一次執行
+        resizeGame();
+
+        // 視窗大小改變時重新計算
+        window.addEventListener("resize", resizeGame);
+
+
+        // Mobile
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+
+            var meta = document.createElement('meta');
+
+            meta.name = 'viewport';
+
+            meta.content =
+                'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+
+            document.getElementsByTagName('head')[0].appendChild(meta);
+
+        }
+
+
+        createUnityInstance(canvas, {
+
+            arguments: [],
+
+            dataUrl: "Build/Export.data",
+            frameworkUrl: "Build/Export.framework.js",
+            codeUrl: "Build/Export.wasm",
+
+            streamingAssetsUrl: "StreamingAssets",
+
+            companyName: "DefaultCompany",
+            productName: "Youtuber",
+            productVersion: "1.0",
+
+        }).then((unityInstance) => {
+
+        }).catch((message) => {
+
+            alert(message);
+
+        });
+
+    </script>
+
 </body>
+
 </html>
