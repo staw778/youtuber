@@ -38,8 +38,8 @@
 
     <canvas
         id="unity-canvas"
-        width="1920"
-        height="1080"
+        width="1600"
+        height="1000"
         tabindex="-1">
     </canvas>
 
@@ -50,8 +50,8 @@
         const canvas = document.querySelector("#unity-canvas");
 
         // Unity 原始解析度
-        const GAME_WIDTH = 1920;
-        const GAME_HEIGHT = 1080;
+        const GAME_WIDTH = 1600;
+        const GAME_HEIGHT = 1000;
 
         // 等比例縮放 Canvas
         function resizeGame() {
@@ -129,6 +129,15 @@
             alert(message);
 
         });
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+        // 呼叫 Unity 方法 → 暫停存檔
+        unityInstance.SendMessage("GameManager", "OnBrowserHidden");
+    } else {
+        // 呼叫 Unity 方法 → 回來補算
+        unityInstance.SendMessage("GameManager", "OnBrowserVisible");
+    }
+});
 
     </script>
 
