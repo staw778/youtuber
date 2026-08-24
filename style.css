@@ -1,0 +1,89 @@
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font-family:Arial,"Microsoft JhengHei",sans-serif;background:#fff;color:#111}
+.celebration-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.game{position:relative;z-index:2}
+body{overflow:hidden}
+#deleteGame{position:fixed;top:14px;left:24px;z-index:1000;padding:3px 20px;border:1px solid #aaa;background:#fafafa;border-radius:4px;color:#555;font-size:16px;cursor:pointer}
+#deleteGame:hover{color:#c00}
+.theme-toggle{position:fixed;top:12px;right:24px;z-index:1000;width:42px;height:42px;border:1px solid #aaa;border-radius:50%;background:#f5f5f5;color:#222;font-size:25px;line-height:1;cursor:pointer}.theme-toggle:hover{transform:scale(1.05)}
+.game{width:100%;height:100vh;display:grid;grid-template-columns:minmax(520px,56%) minmax(430px,44%);background:#fff}
+.left-panel{position:relative;padding:72px 55px 25px;display:flex;flex-direction:column;align-items:center;overflow:hidden}
+.right-panel{padding:24px 18px 18px 0;display:flex;flex-direction:column;min-width:0;min-height:0}
+.profile-wrap{width:200px;height:200px;min-width:200px;min-height:200px;flex:0 0 200px;border-radius:50%;overflow:hidden;cursor:pointer;margin-bottom:8px}
+.profile-image{width:100%;height:100%;object-fit:cover;display:block}
+.channel-name{width:min(430px,80%);text-align:center;border:0;outline:0;font-size:clamp(25px,3.3vw,45px);font-weight:700;background:transparent;padding:2px 5px;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.subscriber-count{font-size:clamp(28px,3.3vw,44px);font-weight:500;margin-top:6px}
+#subscriberCount{font-weight:700}
+.cps{font-size:clamp(18px,2vw,25px);margin-top:2px}
+.subscribe-button{width:min(500px,82%);height:100px;margin:28px 0 16px;border:0;border-radius:60px;background:#222;color:#fff;font-size:clamp(35px,4vw,52px);font-weight:800;cursor:pointer;transition:.05s;box-shadow:0 4px 0 #111}
+.subscribe-button:active{transform:translateY(4px);box-shadow:none}
+.medal-title{width:min(600px,100%);flex:0 0 auto;font-size:21px;margin-top:0;margin-bottom:8px}
+.medals{width:min(600px,100%);display:flex;flex-wrap:wrap;justify-content:flex-start;gap:22px;flex:0 0 auto}
+.medal{display:none;flex-direction:column;align-items:center;font-size:17px}.medal.unlocked{display:flex}
+.medal img{width:78px;height:60px;object-fit:contain}
+.event-box{width:min(600px,100%);min-height:108px;margin-top:18px;padding:12px 0;font-size:22px;line-height:1.55}
+.event-heading{font-weight:700;margin-bottom:5px}
+#eventText{min-height:65px}
+.event-button{position:relative;width:min(360px,65%);height:58px;border:0;border-radius:35px;background:#086bc1;color:#fff;font-size:21px;font-weight:700;overflow:hidden;cursor:pointer}
+.event-button.cooldown{background:#777;cursor:not-allowed}
+#eventFill{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(0,0,0,.2);z-index:0}
+.event-button-text{position:relative;z-index:1}
+.click-upgrades{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:30px}
+.upgrade-card{height:142px;border:0;border-radius:25px;background:#0874c8;color:#fff;display:grid;grid-template-columns:105px 1fr;align-items:center;text-align:left;padding:10px 14px;cursor:pointer}
+.upgrade-card:hover{filter:brightness(1.08)}
+.upgrade-card.bought{background:#777;cursor:not-allowed}
+.upgrade-card img{width:95px;height:95px;object-fit:contain}
+.upgrade-card b{font-size:40px;display:block}
+.upgrade-card small{display:block;font-size:15px}
+.upgrade-card em{display:block;font-style:normal;font-size:14px;margin-top:5px;color:#e8f3ff}
+.shop-title{font-size:20px;font-weight:800;padding:0 0 10px;border-bottom:1px solid #ccc}
+.youtuber-list{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 0 30px;border:1px solid #ddd;border-top:0;cursor:grab;touch-action:none;user-select:none}
+.youtuber-list::-webkit-scrollbar{width:12px}
+.youtuber-list::-webkit-scrollbar-thumb{background:#aaa;border-radius:8px}
+.youtuber-list:active{cursor:grabbing}
+.youtuber{position:relative;display:grid;grid-template-columns:145px minmax(0,1fr) 65px;align-items:center;width:100%;min-width:100%;height:148px;min-height:148px;max-height:148px;padding:0 12px 0 0;background:#eee;border:0;border-bottom:2px solid #ddd;cursor:pointer;transition:.08s;font-family:inherit;text-align:left}
+.youtuber:hover{background:#e7e7e7}
+.yt-image{width:145px;height:145px;object-fit:contain;background:transparent;display:block}
+.yt-main{padding-left:26px;min-width:0}
+.yt-name{font-size:clamp(24px,2.4vw,35px);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.yt-cost{font-size:clamp(22px,2.4vw,34px);margin-top:4px;font-weight:500}
+.yt-cost.can{color:#12d63b}.yt-cost.no{color:#ed1515}
+.yt-level{font-size:clamp(38px,4vw,62px);font-weight:900;color:#8a8a8a;text-align:right}
+.youtuber.unowned .yt-level{visibility:hidden}
+.yt-tooltip{position:absolute;right:65px;top:4px;background:#111;color:#fff;padding:7px 11px;border-radius:6px;font-size:14px;opacity:0;pointer-events:none;white-space:nowrap;transform:translateY(-4px);transition:.12s;z-index:20}
+.youtuber:hover .yt-tooltip{opacity:1;transform:translateY(0)}
+.float-number{position:fixed;z-index:3000;pointer-events:none;font-size:24px;font-weight:900;color:#fff;-webkit-text-stroke:1.5px #000;paint-order:stroke fill;text-shadow:none;animation:floatUp .8s ease-out forwards}
+@keyframes floatUp{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-70px)}}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#111;color:#fff;padding:9px 15px;border-radius:7px;opacity:0;transition:.2s;z-index:4000}
+#toast.show{opacity:1}
+@media(max-width:900px){
+ body{overflow:auto}
+ .game{height:auto;min-height:100vh;grid-template-columns:1fr}
+ .left-panel{padding-top:65px}
+ .right-panel{padding:20px}
+ .youtuber{height:105px;min-height:105px;max-height:105px;grid-template-columns:100px minmax(0,1fr) 48px}
+ .yt-image{width:100px;height:103px;object-fit:contain;background:transparent}
+ .yt-main{padding-left:15px}
+}
+
+/* 深色模式：只反轉介面黑白，不反轉圖片、藍色、紅色與綠色價格。 */
+body.dark-mode{background:#111;color:#eee}
+body.dark-mode .game{background:transparent;color:#eee}
+body.dark-mode #deleteGame{background:#222;color:#ddd;border-color:#555}
+body.dark-mode #deleteGame:hover{color:#ff5555}
+body.dark-mode .theme-toggle{background:#222;color:#ffd966;border-color:#555}
+body.dark-mode .channel-name{color:#fff}
+body.dark-mode .subscriber-count,body.dark-mode .cps,body.dark-mode .medal-title,body.dark-mode .event-heading,body.dark-mode #eventText{color:#eee}
+body.dark-mode .medal img{opacity:1;filter:none}
+body.dark-mode .event-button{color:#fff}
+body.dark-mode .shop-title{color:#eee;border-bottom-color:#444}
+body.dark-mode .youtuber-list{border-color:#444;background:#151515}
+body.dark-mode .youtuber{background:#292929;color:#eee;border-bottom-color:#444}
+body.dark-mode .youtuber:hover{background:#353535}
+body.dark-mode .yt-level{color:#aaa}
+body.dark-mode .yt-cost.can{color:#12d63b}
+body.dark-mode .yt-cost.no{color:#ed1515}
+body.dark-mode .yt-tooltip{background:#fff;color:#111}
+body.dark-mode .youtuber-list::-webkit-scrollbar-track{background:#222}
+body.dark-mode .youtuber-list::-webkit-scrollbar-thumb{background:#666}
+body.dark-mode #toast{background:#eee;color:#111}

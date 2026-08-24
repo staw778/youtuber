@@ -1,146 +1,67 @@
 <!DOCTYPE html>
-<html lang="en-us">
-
+<html lang="zh-Hant">
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-    <title>Unity Web Player | Youtuber</title>
-
-    <style>
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: black;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #unity-canvas {
-            display: block;
-            background: #231F20;
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>YouTuber 訂閱模擬器</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+<button id="deleteGame" title="刪除全部存檔">刪除頻道</button>
+<button id="themeToggle" class="theme-toggle" title="切換成深色模式">☾</button>
 
-    <canvas
-        id="unity-canvas"
-        width="1600"
-        height="1000"
-        tabindex="-1">
-    </canvas>
+<div class="game">
+  <section class="left-panel">
+    <div class="profile-wrap" title="點擊更換玩家大頭貼">
+      <img id="profileImage" class="profile-image" src="assets/default_avatar.png" alt="玩家大頭貼">
+      <input id="profileInput" type="file" accept="image/*" hidden>
+    </div>
 
-    <script src="Build/Export.loader.js"></script>
+    <input id="channelName" class="channel-name" value="我的頻道" maxlength="30" aria-label="頻道名稱">
 
-    <script>
+    <div class="subscriber-count"><span id="subscriberCount">0</span> 位訂閱者</div>
+    <div class="cps">每秒：<span id="cps">0</span></div>
 
-        const canvas = document.querySelector("#unity-canvas");
+    <button id="subscribeButton" class="subscribe-button">訂閱</button>
 
-        // Unity 原始解析度
-        const GAME_WIDTH = 1600;
-        const GAME_HEIGHT = 1000;
+    <div class="medal-title">訂閱獎牌</div>
+    <div class="medals">
+      <div class="medal"><img id="medal100k" src="assets/medals/100k.png"><span>10萬</span></div>
+      <div class="medal"><img id="medal1m" src="assets/medals/1m.png"><span>100萬</span></div>
+      <div class="medal"><img id="medal10m" src="assets/medals/10m.png"><span>1000萬</span></div>
+      <div class="medal"><img id="medal50m" src="assets/medals/50m.png"><span>5000萬</span></div>
+      <div class="medal"><img id="medal100m" src="assets/medals/100m.png"><span>1億</span></div>
+    </div>
 
-        // 等比例縮放 Canvas
-        function resizeGame() {
+    <div class="event-box">
+      <div class="event-heading">事件</div>
+      <div id="eventText">你的人生充滿了未知的可能。</div>
+    </div>
 
-            const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
+    <button id="eventButton" class="event-button">
+      <span id="eventFill"></span>
+      <span class="event-button-text">抽事件卡</span>
+    </button>
+  </section>
 
-            const gameRatio = GAME_WIDTH / GAME_HEIGHT;
-            const windowRatio = windowWidth / windowHeight;
+  <section class="right-panel">
+    <div class="click-upgrades">
+      <button type="button" id="doubleClick" class="upgrade-card">
+        <img src="assets/blue_finger.png" alt="藍色點擊升級">
+        <div><b>×2</b><small>點擊功率 ×2</small><em>100 訂閱</em></div>
+      </button>
+      <button type="button" id="quadClick" class="upgrade-card">
+        <img src="assets/red_finger.png" alt="紅色點擊升級">
+        <div><b>×4</b><small>點擊功率 ×4</small><em>1,000 訂閱</em></div>
+      </button>
+    </div>
 
-            let width;
-            let height;
+    <div class="shop-title">YOUTUBER</div>
+    <div id="youtuberList" class="youtuber-list"></div>
+  </section>
+</div>
 
-            if (windowRatio > gameRatio) {
-
-                // 螢幕比較寬
-                // 以高度為基準
-                height = windowHeight;
-                width = height * gameRatio;
-
-            }
-            else {
-
-                // 螢幕比較窄 / 比較高
-                // 以寬度為基準
-                width = windowWidth;
-                height = width / gameRatio;
-
-            }
-
-            canvas.style.width = width + "px";
-            canvas.style.height = height + "px";
-        }
-
-        // 第一次執行
-        resizeGame();
-
-        // 視窗大小改變時重新計算
-        window.addEventListener("resize", resizeGame);
-
-
-        // Mobile
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-
-            var meta = document.createElement('meta');
-
-            meta.name = 'viewport';
-
-            meta.content =
-                'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-
-            document.getElementsByTagName('head')[0].appendChild(meta);
-
-        }
-
-
-        createUnityInstance(canvas, {
-
-            arguments: [],
-
-            dataUrl: "Build/Export.data",
-            frameworkUrl: "Build/Export.framework.js",
-            codeUrl: "Build/Export.wasm",
-
-            streamingAssetsUrl: "StreamingAssets",
-
-            companyName: "DefaultCompany",
-            productName: "Youtuber",
-            productVersion: "1.0",
-
-        }).then((unityInstance) => {
-
-        }).catch((message) => {
-
-            alert(message);
-
-        });
-document.addEventListener("visibilitychange", function() {
-    if (document.hidden) {
-        // 呼叫 Unity 方法 → 暫停存檔
-        unityInstance.SendMessage("GameManager", "OnBrowserHidden");
-    } else {
-        // 呼叫 Unity 方法 → 回來補算
-        unityInstance.SendMessage("GameManager", "OnBrowserVisible");
-    }
-});
-
-    </script>
-
+<div id="toast"></div>
+<script src="game.js"></script>
 </body>
-
 </html>

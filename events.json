@@ -1,0 +1,66 @@
+[
+  {
+    "id": "good",
+    "text": "你的影片莫名其妙爆紅，訂閱數 {percent}（{amount}）！",
+    "min": 3,
+    "max": 8,
+    "sign": "positive",
+    "weight": 10
+  },
+  {
+    "id": "bad",
+    "text": "你在半夜四點叫女朋友煮牛肉麵，被網友炎上，訂閱數 {percent}（{amount}）。",
+    "min": 3,
+    "max": 8,
+    "sign": "negative",
+    "weight": 10
+  },
+  {
+    "id": "good2",
+    "text": "你到花蓮當鏟子超人，訂閱數 {percent}（{amount}）！",
+    "min": 3,
+    "max": 8,
+    "sign": "positive",
+    "weight": 10
+  },
+  {
+    "id": "bad2",
+    "text": "你抽大麻被抓到了，訂閱數 {percent}（{amount}）。",
+    "min": 3,
+    "max": 8,
+    "sign": "negative",
+    "weight": 10
+  },
+  {
+    "id": "bad3",
+    "text": "你的服飾品牌被爆抄襲，你卻死不承認，訂閱數 {percent}（{amount}）。",
+    "min": 3,
+    "max": 8,
+    "sign": "negative",
+    "weight": 10
+  },
+  {
+    "id": "bad4",
+    "text": "你玩德州撲克對好友詐賭，訂閱數 {percent}（{amount}）。",
+    "min": 3,
+    "max": 8,
+    "sign": "negative",
+    "weight": 10
+  },
+  {
+    "id": "good3",
+    "text": "你的頻道被枕邊人改了密碼，大家都很同情你，訂閱數 {percent}（{amount}）。",
+    "min": 3,
+    "max": 8,
+    "sign": "positive",
+    "weight": 10
+  },
+  {
+    "id": "good4",
+    "text": "你在古蹟抽菸被抓到，但人氣不減反增，訂閱數 {percent}（{amount}）。",
+    "min": 3,
+    "max": 8,
+    "sign": "positive",
+    "weight": 10
+  }
+]

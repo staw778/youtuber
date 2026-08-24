@@ -1,0 +1,93 @@
+[
+  {
+    "id": "fangshui",
+    "name": "放水",
+    "cost": 15,
+    "cps": 1,
+    "image": "assets/youtubers/fangshui.png"
+  },
+  {
+    "id": "mzhitong",
+    "name": "拇指通",
+    "cost": 100,
+    "cps": 7,
+    "image": "assets/youtubers/mzhitong.png"
+  },
+  {
+    "id": "laobao",
+    "name": "勞葆",
+    "cost": 1000,
+    "cps": 25,
+    "image": "assets/youtubers/laobao.png"
+  },
+  {
+    "id": "green_uncle",
+    "name": "綠鬼叔叔",
+    "cost": 10000,
+    "cps": 125,
+    "image": "assets/youtubers/green_uncle.png"
+  },
+  {
+    "id": "changzhang",
+    "name": "鐵馬",
+    "cost": 50000,
+    "cps": 350,
+    "image": "assets/youtubers/changzhang.png"
+  },
+  {
+    "id": "asha_english",
+    "name": "阿灑英文",
+    "cost": 100000,
+    "cps": 720,
+    "image": "assets/youtubers/asha_english.png"
+  },
+  {
+    "id": "fat_otaku",
+    "name": "人生肥宅x蹲",
+    "cost": 300000,
+    "cps": 1480,
+    "image": "assets/youtubers/fat_otaku.png"
+  },
+  {
+    "id": "europe_dong",
+    "name": "歐洲董神",
+    "cost": 500000,
+    "cps": 2500,
+    "image": "assets/youtubers/europe_dong.png"
+  },
+  {
+    "id": "tonglan",
+    "name": "銅蘭",
+    "cost": 1000000,
+    "cps": 9000,
+    "image": "assets/youtubers/tonglan.png"
+  },
+  {
+    "id": "endy",
+    "name": "Endy老師",
+    "cost": 3000000,
+    "cps": 15000,
+    "image": "assets/youtubers/endy.png"
+  },
+  {
+    "id": "old_mo",
+    "name": "老矮與小莫",
+    "cost": 5000000,
+    "cps": 35000,
+    "image": "assets/youtubers/old_mo.png"
+  },
+  {
+    "id": "whenfun",
+    "name": "WhenFun何時爽",
+    "cost": 10000000,
+    "cps": 72000,
+    "image": "assets/youtubers/whenfun.png"
+  },
+  {
+    "id": "beast",
+    "name": "野獸先生",
+    "cost": 100000000,
+    "cps": 1000000,
+    "image": "assets/youtubers/beast.png"
+  }
+]
