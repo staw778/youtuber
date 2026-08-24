@@ -25,7 +25,7 @@
   },
   {
     "id": "bad2",
-    "text": "你抽大麻被抓到了，訂閱數 {percent}（{amount}）。",
+    "text": "你在家抽大麻被抓到，訂閱數 {percent}（{amount}）。",
     "min": 3,
     "max": 8,
     "sign": "negative",
@@ -41,7 +41,7 @@
   },
   {
     "id": "bad4",
-    "text": "你玩德州撲克對好友詐賭，訂閱數 {percent}（{amount}）。",
+    "text": "你玩德州撲克對好友詐賭被抓包，訂閱數 {percent}（{amount}）。",
     "min": 3,
     "max": 8,
     "sign": "negative",
@@ -58,6 +58,22 @@
   {
     "id": "good4",
     "text": "你在古蹟抽菸被抓到，但人氣不減反增，訂閱數 {percent}（{amount}）。",
+    "min": 3,
+    "max": 8,
+    "sign": "positive",
+    "weight": 10
+  },
+  {
+    "id": "bad5",
+    "text": "你去日本玩對古蹟潑油被抓到，訂閱數 {percent}（{amount}）。",
+    "min": 3,
+    "max": 8,
+    "sign": "negative",
+    "weight": 10
+  },
+  {
+    "id": "good5",
+    "text": "你在古蹟抽菸被抓到，但大家反而瘋狂訂閱你，訂閱數 {percent}（{amount}）。",
     "min": 3,
     "max": 8,
     "sign": "positive",
