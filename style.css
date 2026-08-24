@@ -58,9 +58,11 @@ body{overflow:hidden}
 #toast.show{opacity:1}
 @media(max-width:900px){
  body{overflow:auto}
- .game{height:auto;min-height:100vh;grid-template-columns:1fr}
+ .game{height:auto;min-height:100vh;grid-template-columns:1fr;background:#fff}
  .left-panel{padding-top:65px}
- .right-panel{padding:20px}
+ .right-panel{padding:20px;min-height:0}
+ .youtuber-list{flex:none;overflow-y:visible;overflow-x:hidden;max-height:none;touch-action:auto;cursor:default;user-select:none}
+ .youtuber-list:active{cursor:default}
  .youtuber{height:105px;min-height:105px;max-height:105px;grid-template-columns:100px minmax(0,1fr) 48px}
  .yt-image{width:100px;height:103px;object-fit:contain;background:transparent}
  .yt-main{padding-left:15px}
@@ -68,7 +70,7 @@ body{overflow:hidden}
 
 /* 深色模式：只反轉介面黑白，不反轉圖片、藍色、紅色與綠色價格。 */
 body.dark-mode{background:#111;color:#eee}
-body.dark-mode .game{background:transparent;color:#eee}
+body.dark-mode .game{background:#111;color:#eee}
 body.dark-mode #deleteGame{background:#222;color:#ddd;border-color:#555}
 body.dark-mode #deleteGame:hover{color:#ff5555}
 body.dark-mode .theme-toggle{background:#222;color:#ffd966;border-color:#555}
