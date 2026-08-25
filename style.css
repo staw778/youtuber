@@ -89,3 +89,89 @@ body.dark-mode .yt-tooltip{background:#fff;color:#111}
 body.dark-mode .youtuber-list::-webkit-scrollbar-track{background:#222}
 body.dark-mode .youtuber-list::-webkit-scrollbar-thumb{background:#666}
 body.dark-mode #toast{background:#eee;color:#111}
+
+
+/* 訂閱獎牌環繞大頭貼：獎牌不再佔用原本的版面高度。 */
+.profile-orbit{
+  position:relative;
+  width:360px;
+  height:340px;
+  flex:0 0 340px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.profile-orbit .profile-wrap{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  margin:0;
+}
+.profile-orbit .medal-title{
+  display:none;
+}
+.profile-orbit .medals{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index:3;
+  pointer-events:none;
+}
+.profile-orbit .medal{
+  position:absolute;
+  width:82px;
+  min-height:78px;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  line-height:1.1;
+  pointer-events:none;
+  animation:medalFloat 3.2s ease-in-out infinite;
+}
+.profile-orbit .medal.unlocked{display:flex}
+.profile-orbit .medal img{
+  width:78px;
+  height:60px;
+  object-fit:contain;
+  display:block;
+}
+.profile-orbit .medal:nth-child(1){left:50%;top:0;transform:translateX(-50%);animation-delay:0s}
+.profile-orbit .medal:nth-child(2){right:1%;top:23%;animation-delay:-.65s}
+.profile-orbit .medal:nth-child(3){right:8%;bottom:8%;animation-delay:-1.3s}
+.profile-orbit .medal:nth-child(4){left:8%;bottom:8%;animation-delay:-1.95s}
+.profile-orbit .medal:nth-child(5){left:1%;top:23%;animation-delay:-2.6s}
+@keyframes medalFloat{
+  0%,100%{margin-top:0}
+  50%{margin-top:-7px}
+}
+
+/* 手機版：縮小環繞範圍，但仍保留完整圓周感。 */
+@media(max-width:900px){
+  .profile-orbit{
+    width:320px;
+    height:310px;
+    flex-basis:310px;
+  }
+  .profile-orbit .profile-wrap{
+    width:190px;
+    height:190px;
+    min-width:190px;
+    min-height:190px;
+    flex-basis:190px;
+  }
+  .profile-orbit .medal{
+    width:72px;
+    min-height:70px;
+    font-size:14px;
+  }
+  .profile-orbit .medal img{
+    width:70px;
+    height:54px;
+  }
+}

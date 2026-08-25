@@ -12,9 +12,19 @@
 
 <div class="game">
   <section class="left-panel">
-    <div class="profile-wrap" title="點擊更換玩家大頭貼">
-      <img id="profileImage" class="profile-image" src="assets/default_avatar.png" alt="玩家大頭貼">
-      <input id="profileInput" type="file" accept="image/*" hidden>
+    <div class="profile-orbit">
+      <div class="profile-wrap" title="點擊更換玩家大頭貼">
+        <img id="profileImage" class="profile-image" src="assets/default_avatar.png" alt="玩家大頭貼">
+        <input id="profileInput" type="file" accept="image/*" hidden>
+      </div>
+      <div class="medal-title">訂閱獎牌</div>
+      <div class="medals">
+        <div class="medal"><img id="medal100k" src="assets/medals/100k.png"><span>10萬</span></div>
+        <div class="medal"><img id="medal1m" src="assets/medals/1m.png"><span>100萬</span></div>
+        <div class="medal"><img id="medal10m" src="assets/medals/10m.png"><span>1000萬</span></div>
+        <div class="medal"><img id="medal50m" src="assets/medals/50m.png"><span>5000萬</span></div>
+        <div class="medal"><img id="medal100m" src="assets/medals/100m.png"><span>1億</span></div>
+      </div>
     </div>
 
     <input id="channelName" class="channel-name" value="我的頻道" maxlength="30" aria-label="頻道名稱">
@@ -23,15 +33,6 @@
     <div class="cps">每秒：<span id="cps">0</span></div>
 
     <button id="subscribeButton" class="subscribe-button">訂閱</button>
-
-    <div class="medal-title">訂閱獎牌</div>
-    <div class="medals">
-      <div class="medal"><img id="medal100k" src="assets/medals/100k.png"><span>10萬</span></div>
-      <div class="medal"><img id="medal1m" src="assets/medals/1m.png"><span>100萬</span></div>
-      <div class="medal"><img id="medal10m" src="assets/medals/10m.png"><span>1000萬</span></div>
-      <div class="medal"><img id="medal50m" src="assets/medals/50m.png"><span>5000萬</span></div>
-      <div class="medal"><img id="medal100m" src="assets/medals/100m.png"><span>1億</span></div>
-    </div>
 
     <div class="event-box">
       <div class="event-heading">事件</div>

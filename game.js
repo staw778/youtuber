@@ -40,6 +40,7 @@ function createDefaultGame(){
     unlocked:{},
     lastEventAt:0,
     lastEventText:"你的人生充滿了未知的可能。",
+    lastEventId:null,
     sessionOpen:true,
     lastSavedAt:Date.now(),
     darkMode:false
@@ -407,11 +408,17 @@ function chooseEvent(){
 
   if(!events.length) return;
 
-  const total = events.reduce((s,e)=>s+(e.weight ?? 1),0);
-  let r = Math.random()*total;
-  let event = events[events.length-1];
+  // 避免連續抽到完全相同的事件；只排除上一個事件，
+  // 所以 A → B → A 是允許的。
+  const availableEvents = events.length > 1 && game.lastEventId != null
+    ? events.filter(e => e.id !== game.lastEventId)
+    : events;
 
-  for(const e of events){
+  const total = availableEvents.reduce((s,e)=>s+(e.weight ?? 1),0);
+  let r = Math.random()*total;
+  let event = availableEvents[availableEvents.length-1];
+
+  for(const e of availableEvents){
     r -= e.weight ?? 1;
     if(r <= 0){ event=e; break; }
   }
@@ -429,6 +436,7 @@ function chooseEvent(){
   if(game.subscribers < 0) game.subscribers=0;
 
   game.lastEventAt = now;
+  game.lastEventId = event.id ?? null;
   const percentText = `${signedPercent > 0 ? "+" : ""}${signedPercent}%`;
   const amountText = `${amount >= 0 ? "+" : ""}${format(amount)}`;
   game.lastEventText = event.text
