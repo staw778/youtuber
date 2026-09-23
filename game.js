@@ -29,7 +29,7 @@ let celebrationInitialized = false;
 
 function createDefaultGame(){
   return {
-    channelName:"我的頻道",
+    channelName:"我的頻道*",
     profileDataUrl:null,
     subscribers:0,
     clickLevel:1,
@@ -39,7 +39,7 @@ function createDefaultGame(){
     youtubers:{},
     unlocked:{},
     lastEventAt:0,
-    lastEventText:"你的人生充滿了未知的可能。",
+    lastEventText:"你的Youtuber生涯要開始了！",
     lastEventId:null,
     sessionOpen:true,
     lastSavedAt:Date.now(),
