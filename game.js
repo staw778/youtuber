@@ -49,6 +49,21 @@ function createDefaultGame(){
 
 const $ = id => document.getElementById(id);
 
+// UI sound effects. Replace these two WAV files later if you want different sounds.
+const UI_SOUNDS = {
+  subscribe: new Audio("assets/sfx_subscribe.wav"),
+  action: new Audio("assets/sfx_action.wav")
+};
+UI_SOUNDS.subscribe.preload = "auto";
+UI_SOUNDS.action.preload = "auto";
+
+function playUISound(type){
+  const sound = UI_SOUNDS[type];
+  if(!sound) return;
+  sound.currentTime = 0;
+  sound.play().catch(()=>{});
+}
+
 function format(n){
   if (!Number.isFinite(n)) return "0";
   return Math.floor(n).toLocaleString("zh-TW");
@@ -274,6 +289,7 @@ function buyYoutuber(id){
   game.subscribers-=cost;
   game.youtubers[id]=getLevel(id)+1;
   game.unlocked[id]=true;
+  playUISound("action");
   updateUI();
   save();
 }
@@ -291,6 +307,7 @@ function buyClickUpgrade(type){
   game.subscribers -= upgrade.cost;
   game[boughtKey] = true;
   game.clickLevel *= upgrade.multiplier;
+  playUISound("action");
   updateUI();
   save();
 }
@@ -360,6 +377,7 @@ function showClickNumber(amount,x,y){
 }
 
 $("subscribeButton").addEventListener("click",(e)=>{
+  playUISound("subscribe");
   const power = getClickPower();
   addSubscribers(power);
   showClickNumber(power,e.clientX,e.clientY - 20);
@@ -407,6 +425,8 @@ function chooseEvent(){
   }
 
   if(!events.length) return;
+
+  playUISound("action");
 
   // 避免連續抽到完全相同的事件；只排除上一個事件，
   // 所以 A → B → A 是允許的。
